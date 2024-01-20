@@ -38,7 +38,7 @@ namespace Cars
         {
             if (conn.State != System.Data.ConnectionState.Closed)
             {
-                conn.Open();
+                conn.Close();
             }
         }
 
@@ -63,19 +63,20 @@ namespace Cars
                     {
                         string rendszam = dr.GetString("rendszam");
                         string marka = dr.GetString("marka");
-                        string model = dr.GetString("model");
+                        string modell = dr.GetString("modell");
                         int gyartasiev = dr.GetInt32("gyartasiev");
                         DateTime forgalmiErvenyessegDateTime = dr.GetDateTime("forgalmiervenyesseg");
                         DateOnly forgalmiErvenyesseg = new DateOnly(forgalmiErvenyessegDateTime.Year, forgalmiErvenyessegDateTime.Month, forgalmiErvenyessegDateTime.Day);
                         int vetelar = dr.GetInt32("vetelar");
                         int kmallas = dr.GetInt32("kmallas");
-                        int hengerurtartalom = dr.GetInt32("hengerurtartalom");
+                        int hengerurtartalom = dr.GetInt32("hengerűrtartalom");
                         int tomeg = dr.GetInt32("tomeg");
                         int teljesitmeny = dr.GetInt32("teljesitmeny");
-                        cars.Add(new Car(rendszam, marka, model, gyartasiev, forgalmiErvenyesseg, vetelar, kmallas, hengerurtartalom, tomeg, teljesitmeny));
+                        cars.Add(new Car(rendszam, marka, modell, gyartasiev, forgalmiErvenyesseg, vetelar, kmallas, hengerurtartalom, tomeg, teljesitmeny));
                     }
                 }
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 MessageBox.Show(e.Message);
             }
@@ -85,4 +86,6 @@ namespace Cars
             }
             return cars;
         }
+    }
+}
     

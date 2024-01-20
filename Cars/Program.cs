@@ -9,10 +9,11 @@ namespace Cars
         public static Form_open form_Open = null;
         static void Main()
         {
+            ApplicationConfiguration.Initialize();
             database = new DB();
             cars = database.getAllCars();
             form_Open = new Form_open();
-            ApplicationConfiguration.Initialize();
+
             Application.Run(new Form_open());
         }
     }
