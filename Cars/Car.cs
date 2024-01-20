@@ -34,6 +34,11 @@ namespace Cars
             Teljesitmeny = teljesitmeny;
         }
 
+        public override string? ToString()
+        {
+            return $"{Marka} {Model} ({vetelar})";
+        }
+
         public string Rendszam { get => rendszam; set => rendszam = value; }
         public string Marka { get => marka; set => marka = value; }
         public string Model { get => model; set => model = value; }

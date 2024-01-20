@@ -7,7 +7,7 @@ using MySql.Data.MySqlClient;
 
 namespace Cars
 {
-     
+
     internal class DB
     {
         MySqlConnection conn = null;
@@ -19,19 +19,19 @@ namespace Cars
             builder.Server = "192.168.41.1";
             builder.UserID = "root";
             builder.Password = "";
-            builder.Database = "cars";
+            builder.Database = "autok";
             conn = new MySqlConnection(builder.ConnectionString);
             sql = conn.CreateCommand();
             try
             {
                 kapcsolatNyit();
             }
-            catch(MySqlException e)
+            catch (MySqlException e)
             {
                 MessageBox.Show(e.Message);
                 Environment.Exit(0);
             }
-            finally { kapcsolatZar() }
+            finally { kapcsolatZar(); }
         }
 
         private void kapcsolatZar()
@@ -49,5 +49,40 @@ namespace Cars
                 conn.Open();
             }
         }
-    }
-}
+
+        internal List<Car> getAllCars()
+        {
+            List<Car> cars = new List<Car>();
+            sql.CommandText = "SELECT * from auto";
+            try
+            {
+                kapcsolatNyit();
+                using (MySqlDataReader dr = sql.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        string rendszam = dr.GetString("rendszam");
+                        string marka = dr.GetString("marka");
+                        string model = dr.GetString("model");
+                        int gyartasiev = dr.GetInt32("gyartasiev");
+                        DateTime forgalmiErvenyessegDateTime = dr.GetDateTime("forgalmiervenyesseg");
+                        DateOnly forgalmiErvenyesseg = new DateOnly(forgalmiErvenyessegDateTime.Year, forgalmiErvenyessegDateTime.Month, forgalmiErvenyessegDateTime.Day);
+                        int vetelar = dr.GetInt32("vetelar");
+                        int kmallas = dr.GetInt32("kmallas");
+                        int hengerurtartalom = dr.GetInt32("hengerurtartalom");
+                        int tomeg = dr.GetInt32("tomeg");
+                        int teljesitmeny = dr.GetInt32("teljesitmeny");
+                        cars.Add(new Car(rendszam, marka, model, gyartasiev, forgalmiErvenyesseg, vetelar, kmallas, hengerurtartalom, tomeg, teljesitmeny));
+                    }
+                }
+            } catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                kapcsolatZar();
+            }
+            return cars;
+        }
+    
