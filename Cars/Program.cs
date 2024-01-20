@@ -14,7 +14,7 @@ namespace Cars
             cars = database.getAllCars();
             form_Open = new Form_open();
 
-            Application.Run(new Form_open());
+            Application.Run(form_Open);
         }
     }
 }

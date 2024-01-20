@@ -34,9 +34,9 @@
             label1 = new Label();
             label2 = new Label();
             menuStrip1 = new MenuStrip();
-            carsToolStripMenuItem = new ToolStripMenuItem();
+            carToolStripMenuItem = new ToolStripMenuItem();
             newToolStripMenuItem = new ToolStripMenuItem();
-            updateToolStripMenuItem = new ToolStripMenuItem();
+            editToolStripMenuItem = new ToolStripMenuItem();
             deleteToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -50,6 +50,7 @@
             listBox_carList.Name = "listBox_carList";
             listBox_carList.Size = new Size(392, 550);
             listBox_carList.TabIndex = 0;
+            listBox_carList.SelectedIndexChanged += listBox_carList_SelectedIndexChanged;
             // 
             // panel_checkBox
             // 
@@ -78,31 +79,32 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { carsToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { carToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1029, 24);
             menuStrip1.TabIndex = 4;
-            menuStrip1.Text = "menuStrip1";
             // 
-            // carsToolStripMenuItem
+            // carToolStripMenuItem
             // 
-            carsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { newToolStripMenuItem, updateToolStripMenuItem, deleteToolStripMenuItem });
-            carsToolStripMenuItem.Name = "carsToolStripMenuItem";
-            carsToolStripMenuItem.Size = new Size(42, 20);
-            carsToolStripMenuItem.Text = "Cars";
+            carToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { newToolStripMenuItem, editToolStripMenuItem, deleteToolStripMenuItem });
+            carToolStripMenuItem.Name = "carToolStripMenuItem";
+            carToolStripMenuItem.Size = new Size(37, 20);
+            carToolStripMenuItem.Text = "Car";
             // 
             // newToolStripMenuItem
             // 
             newToolStripMenuItem.Name = "newToolStripMenuItem";
             newToolStripMenuItem.Size = new Size(180, 22);
             newToolStripMenuItem.Text = "New";
+            newToolStripMenuItem.Click += newToolStripMenuItem_Click;
             // 
-            // updateToolStripMenuItem
+            // editToolStripMenuItem
             // 
-            updateToolStripMenuItem.Name = "updateToolStripMenuItem";
-            updateToolStripMenuItem.Size = new Size(180, 22);
-            updateToolStripMenuItem.Text = "Update";
+            editToolStripMenuItem.Name = "editToolStripMenuItem";
+            editToolStripMenuItem.Size = new Size(180, 22);
+            editToolStripMenuItem.Text = "Edit";
+            editToolStripMenuItem.Click += editToolStripMenuItem_Click;
             // 
             // deleteToolStripMenuItem
             // 
@@ -135,14 +137,14 @@
 
         #endregion
 
-        private ListBox listBox_carList;
+        public ListBox listBox_carList;
         private Panel panel_checkBox;
         private Label label1;
         private Label label2;
         private MenuStrip menuStrip1;
-        private ToolStripMenuItem carsToolStripMenuItem;
+        private ToolStripMenuItem carToolStripMenuItem;
         private ToolStripMenuItem newToolStripMenuItem;
-        private ToolStripMenuItem updateToolStripMenuItem;
+        private ToolStripMenuItem editToolStripMenuItem;
         private ToolStripMenuItem deleteToolStripMenuItem;
     }
 }

@@ -42,14 +42,24 @@ namespace Cars
             }
         }
 
-        private void kapcsolatNyit()
+        private  void kapcsolatNyit()
         {
             if (conn.State != System.Data.ConnectionState.Open)
             {
                 conn.Open();
             }
         }
+        internal  void deleteCar()
+        {
+            sql.CommandText = "DELETE from auto WHERE ";
+            try {
+                kapcsolatNyit();
 
+            } catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            } finally { kapcsolatZar(); } 
+        }
         internal List<Car> getAllCars()
         {
             List<Car> cars = new List<Car>();
@@ -86,6 +96,8 @@ namespace Cars
             }
             return cars;
         }
+
+        
     }
 }
     

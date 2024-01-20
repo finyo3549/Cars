@@ -7,9 +7,13 @@ namespace Cars
             InitializeComponent();
         }
 
+        public object SelectedCar
+        {
+            get { return listBox_carList.SelectedItem; }
+        }
         private void Form_open_Load(object sender, EventArgs e)
         {
-            foreach(string marka in Program.cars.Select(a => a.Marka).Distinct())
+            foreach (string marka in Program.cars.Select(a => a.Marka).Distinct())
             {
                 CheckBox cb = new CheckBox();
                 cb.Text = marka;
@@ -30,19 +34,45 @@ namespace Cars
         {
             listBox_carList.Items.Clear();
             List<string> checkedbox = new List<string>();
-            foreach(CheckBox item in panel_checkBox.Controls)
+            foreach (CheckBox item in panel_checkBox.Controls)
             {
-                if(item.Checked)
+                if (item.Checked)
                 {
                     checkedbox.Add(item.Text);
                 }
             }
-            foreach(Car cars in Program.cars)
+            foreach (Car cars in Program.cars)
             {
                 if (checkedbox.Contains(cars.Marka))
                 {
                     listBox_carList.Items.Add(cars);
                 }
+            }
+        }
+
+        private void listBox_carList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selectedItem = listBox_carList.SelectedItem;
+            Console.WriteLine(selectedItem);
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form_Details formDetails = new Form_Details("new");
+            formDetails.ShowDialog();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Program.form_Open.SelectedCar == null)
+            {
+                MessageBox.Show("No car selected");
+                return;
+            }
+            else
+            {
+                Form_Details formDetails = new Form_Details("edit");
+                formDetails.ShowDialog();
             }
         }
     }
