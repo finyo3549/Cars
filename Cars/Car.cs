@@ -34,6 +34,10 @@ namespace Cars
             Teljesitmeny = teljesitmeny;
         }
 
+        public Car()
+        {
+        }
+
         public override string? ToString()
         {
             return $"{Marka} {Modell} ({Gyartasiev})";

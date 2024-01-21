@@ -16,7 +16,7 @@ namespace Cars
         public DB()
         {
             MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder();
-            builder.Server = "192.168.41.1";
+            builder.Server = "localhost";
             builder.UserID = "root";
             builder.Password = "";
             builder.Database = "autok";
@@ -49,11 +49,14 @@ namespace Cars
                 conn.Open();
             }
         }
-        internal  void deleteCar()
+        internal  void deleteCar(Car car)
         {
-            sql.CommandText = "DELETE from auto WHERE ";
+            sql.CommandText = "DELETE from auto WHERE rendszam = @rendszam";
+            sql.Parameters.Clear();
+            sql.Parameters.AddWithValue("@rendszam", car.Rendszam);
             try {
                 kapcsolatNyit();
+                sql.ExecuteNonQuery();
 
             } catch (MySqlException e)
             {
@@ -96,8 +99,72 @@ namespace Cars
             }
             return cars;
         }
+        internal void addCar(Car car)
+        {
+            string formattedDate = car.ForgalmiErvenyesseg.ToString("yyyy-MM-dd");
+            sql.CommandText = "INSERT INTO `auto`(`rendszam`, `marka`, `modell`, `gyartasiev`, `forgalmiErvenyesseg`, `vetelar`, `kmallas`, `hengerűrtartalom`, `tomeg`, `teljesitmeny`) VALUES (@rendszam,@marka,@modell,@gyartasiev,@forgalmiervenyesseg,@vetelar,@kmallas,@hengerurtartalom,@tomeg,@teljesitmeny)";
+            sql.Parameters.Clear();
+            sql.Parameters.AddWithValue("@rendszam", car.Rendszam);
+            sql.Parameters.AddWithValue("@marka", car.Marka);
+            sql.Parameters.AddWithValue("@modell", car.Modell);
+            sql.Parameters.AddWithValue("@gyartasiev", car.Gyartasiev);
+            sql.Parameters.AddWithValue("@forgalmiervenyesseg", formattedDate);
+            sql.Parameters.AddWithValue("@vetelar", car.Vetelar);
+            sql.Parameters.AddWithValue("@kmallas", car.Kmallas);
+            sql.Parameters.AddWithValue("@hengerurtartalom", car.Hengerurtartalom);
+            sql.Parameters.AddWithValue("@tomeg", car.Tomeg);
+            sql.Parameters.AddWithValue("@teljesitmeny", car.Teljesitmeny);
+            try
+            {
+                kapcsolatNyit();
+                sql.ExecuteNonQuery();
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
 
-        
+            }
+            finally
+            {
+                kapcsolatZar();
+            }
+        }
+    
+        internal void updateCar(Car car)
+        {
+            string formattedDate = car.ForgalmiErvenyesseg.ToString("yyyy-MM-dd");
+            sql.CommandText = "UPDATE `auto` SET `rendszam`=@rendszam,`marka`=@marka,`modell`=@modell,`forgalmiErvenyesseg`=@forgalmiervenyesseg,`gyartasiev`=@gyartasiev,`vetelar`=@vetelar,`kmallas`=@kmallas,`hengerűrtartalom`=@hengerurtartalom,`tomeg`=@tomeg,`teljesitmeny`=@teljesitmeny WHERE `rendszam` = @rendszam";
+            sql.Parameters.Clear();
+            sql.Parameters.AddWithValue("@rendszam", car.Rendszam);
+            sql.Parameters.AddWithValue("@marka", car.Marka);
+            sql.Parameters.AddWithValue("@modell", car.Modell);
+            sql.Parameters.AddWithValue("@gyartasiev", car.Gyartasiev);
+            sql.Parameters.AddWithValue("@forgalmiervenyesseg", formattedDate);
+            sql.Parameters.AddWithValue("@vetelar", car.Vetelar);
+            sql.Parameters.AddWithValue("@kmallas", car.Kmallas);
+            sql.Parameters.AddWithValue("@hengerurtartalom", car.Hengerurtartalom);
+            sql.Parameters.AddWithValue("@tomeg", car.Tomeg);
+            sql.Parameters.AddWithValue("@teljesitmeny", car.Teljesitmeny);
+            try
+            {
+                kapcsolatNyit();
+                sql.ExecuteNonQuery();
+                return;
+                
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+
+            }
+            finally
+            {
+                kapcsolatZar();
+            }
+            
+            
+        }
+
     }
 }
     

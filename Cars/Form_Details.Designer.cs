@@ -105,6 +105,7 @@
             // numericUpDown_GyartasiEv
             // 
             numericUpDown_GyartasiEv.Location = new Point(31, 370);
+            numericUpDown_GyartasiEv.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
             numericUpDown_GyartasiEv.Name = "numericUpDown_GyartasiEv";
             numericUpDown_GyartasiEv.Size = new Size(176, 29);
             numericUpDown_GyartasiEv.TabIndex = 5;
@@ -114,6 +115,7 @@
             // 
             textBox_Rendszam.Location = new Point(31, 67);
             textBox_Rendszam.Name = "textBox_Rendszam";
+            textBox_Rendszam.ReadOnly = true;
             textBox_Rendszam.Size = new Size(183, 29);
             textBox_Rendszam.TabIndex = 7;
             // 
@@ -139,6 +141,7 @@
             // numericUpDown_Vetelar
             // 
             numericUpDown_Vetelar.Location = new Point(318, 72);
+            numericUpDown_Vetelar.Maximum = new decimal(new int[] { 10000000, 0, 0, 0 });
             numericUpDown_Vetelar.Name = "numericUpDown_Vetelar";
             numericUpDown_Vetelar.Size = new Size(176, 29);
             numericUpDown_Vetelar.TabIndex = 10;
@@ -157,6 +160,7 @@
             // numericUpDown_KmAllas
             // 
             numericUpDown_KmAllas.Location = new Point(318, 160);
+            numericUpDown_KmAllas.Maximum = new decimal(new int[] { 100000000, 0, 0, 0 });
             numericUpDown_KmAllas.Name = "numericUpDown_KmAllas";
             numericUpDown_KmAllas.Size = new Size(176, 29);
             numericUpDown_KmAllas.TabIndex = 12;
@@ -175,6 +179,7 @@
             // numericUpDownHengerUrtartalom
             // 
             numericUpDownHengerUrtartalom.Location = new Point(318, 255);
+            numericUpDownHengerUrtartalom.Maximum = new decimal(new int[] { 10000000, 0, 0, 0 });
             numericUpDownHengerUrtartalom.Name = "numericUpDownHengerUrtartalom";
             numericUpDownHengerUrtartalom.Size = new Size(176, 29);
             numericUpDownHengerUrtartalom.TabIndex = 14;
@@ -193,6 +198,7 @@
             // numericUpDown_Tomeg
             // 
             numericUpDown_Tomeg.Location = new Point(318, 370);
+            numericUpDown_Tomeg.Maximum = new decimal(new int[] { 10000000, 0, 0, 0 });
             numericUpDown_Tomeg.Name = "numericUpDown_Tomeg";
             numericUpDown_Tomeg.Size = new Size(176, 29);
             numericUpDown_Tomeg.TabIndex = 16;
@@ -211,6 +217,7 @@
             // numericUpDown_Teljesitmeny
             // 
             numericUpDown_Teljesitmeny.Location = new Point(318, 469);
+            numericUpDown_Teljesitmeny.Maximum = new decimal(new int[] { 10000000, 0, 0, 0 });
             numericUpDown_Teljesitmeny.Name = "numericUpDown_Teljesitmeny";
             numericUpDown_Teljesitmeny.Size = new Size(176, 29);
             numericUpDown_Teljesitmeny.TabIndex = 18;

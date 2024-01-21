@@ -30,7 +30,7 @@ namespace Cars
             updateCarsList();
         }
 
-        private void updateCarsList()
+        public void updateCarsList()
         {
             listBox_carList.Items.Clear();
             List<string> checkedbox = new List<string>();
@@ -71,7 +71,21 @@ namespace Cars
             }
             else
             {
-                Form_Details formDetails = new Form_Details("edit");
+                Form_Details formDetails = new Form_Details("update");
+                formDetails.ShowDialog();
+            }
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Program.form_Open.SelectedCar == null)
+            {
+                MessageBox.Show("No car selected");
+                return;
+            }
+            else
+            {
+                Form_Details formDetails = new Form_Details("delete");
                 formDetails.ShowDialog();
             }
         }
